@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Orinoco</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="shortcut icon" type="images/favicon.png" href="images/favicon.png">
+        <meta name="Description" content="Orinoco, commerce en ligne de produits spécifique">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&family=Merienda&display=swap" rel="stylesheet">
+
+        <script src="javascript.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img id="logo" src="images/orinoco.png" alt="Logo Orinoco"></a>
+        </header>
+        <main>
+            <h1>Ours en peluche faits à la main</h1>
+            <div id="product">
+                <div id="teddies-img">
+                    <img id="product-img" src="images/teddy_1.jpg" alt="Ours en peluche 1">
+                </div>
+                <div id="product-description">
+                    <div id="description">
+                        <p>Ours en peluche faits à la main</p>
+                        <p>Dimensions : 300x150mm</p>
+                        <p>35€</p>
+                    </div>
+                    <div id="model-selection">
+                        
+                            <select id="modele-choice" onchange="imgTeddies()"; size="1">
+                                <option value="1">Ours brun
+                                <option value="2">Ours beige
+                                <option value="3">Duo d'ourson
+                                <option value="4">Ours habillé
+                                <option value="5">Ours vintage
+                            </select>
+                            
+                    </div>
+                    <div id="add-cart">
+                        <input type="button" value="Ajouter au panier">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div id="social">
+                <p>Liens réseaux sociaux</p>
+            </div>
+            <div id="contact">
+                <p>Contactez-nous</p>
+            </div>
+        </footer>
+    </body>
+</html>
