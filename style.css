@@ -1,36 +1,41 @@
 body {
-  text-align: center;
   background-color: #F3E9F1;
-  margin: 0; }
-
-#logo {
-  width: 85%; }
-
-h1 {
-  font-family: 'Merienda', cursive; }
+  margin: 0;
+  text-align: center;
+ }
+h1, h3{
+  font-family: 'Merienda', cursive;
+ }
 
 p {
-  font-family: 'Lato', sans-serif; }
-
-#products {
-  display: grid;
-  grid-template-columns: auto;
-  width: 85%;
-  margin: auto;
-  margin-top: 15%;
-  margin-bottom: 5%; }
-
-article {
-  margin-bottom: 3%; }
-
-.products-img {
-  width: 85%;
-  box-shadow: 0 0 1em grey;
-  border-radius: 20px; }
-
-#product-img {
-  width: 85%;
-  box-shadow: 0 0 1em grey;
-  border-radius: 20px; }
-
-/*# sourceMappingURL=style.css.map */
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 140px;
+ }
+img {
+  height: 300px;
+ }
+#products
+{
+  display:flex;
+  justify-content: center;
+}
+#teddiesImg
+{
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+#teddiesNamePrice
+{
+  width: 180px;
+}
+#teddiesBtn
+{
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+button
+{
+  margin-bottom: 280px;
+}
