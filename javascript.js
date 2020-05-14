@@ -37,5 +37,3 @@ function teddiesName(number){
 for (let i = 0; i < 5; i++) { // Boucle pour afficher toutes les photo du tableau
   teddiesName(i);
 }
-
-
