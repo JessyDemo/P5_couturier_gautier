@@ -14,28 +14,4 @@ p {
 img {
   height: 300px;
  }
-#products
-{
-  display:flex;
-  justify-content: center;
-}
-#teddiesImg
-{
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-}
-#teddiesNamePrice
-{
-  width: 180px;
-}
-#teddiesBtn
-{
-  display: flex;
-  flex-direction: column;
-  padding-top: 100px;
-}
-button
-{
-  margin-bottom: 280px;
-}
+

@@ -1,39 +1,57 @@
-function teddiesImg(number){
-    fetch("http://localhost:3000/api/teddies") // Appel API
-    .then(function(response){ // Transformation reponse en Json
+function teddiesArticle(){
+  fetch("http://localhost:3000/api/teddies")
+  .then(function(response){
     return response.json();
-    })
+  })
 
-  .then(function(myJson){     
-      let imgElt = document.createElement("img"); // Création d'un élément img
-      imgElt.Class = "teddiesPhoto"; // Définition de son identifiant
-      imgElt.src = myJson[number].imageUrl; // Chercher l'info voulu
-      document.getElementById("teddiesImg").appendChild(imgElt); // Insertion du nouvel élément
+  .then(function (products)
+  {
+    for (const teddy of products)
+    {
+      //creation container article
+      const section = document.getElementById('all-products');
+      const pdtContainer = document.createElement('article');
+      section.appendChild(pdtContainer);
+
+      //affichage img
+      const img = document.createElement('img');
+      img.src = teddy.imageUrl;
+      pdtContainer.appendChild(img);
+
+      //affichage name
+      const name = document.createElement('h3');
+      name.textContent = teddy.name;
+      pdtContainer.appendChild(name);
+
+      //affichage price
+      const price = document.createElement('p');
+      price.textContent = teddy.price/100 +" €";
+      pdtContainer.appendChild(price);
+    }
   })
 }
 
-for (let i = 0; i < 5; i++) { // Boucle pour afficher toutes les photo du tableau
-  teddiesImg(i);
-}
+teddiesArticle();
 
-function teddiesName(number){
-  fetch("http://localhost:3000/api/teddies") // Appel API
-  .then(function(response){ // Transformation reponse en Json
+function teddyNumber(number){
+  fetch("http://localhost:3000/api/teddies")
+  .then(function(response){ 
   return response.json();
   })
 
-.then(function(myJson){     
-    let nameElt = document.createElement("h3"); // Création d'un élément p
-    let desElt = document.createElement("p");
-    nameElt.Class = "teddiesName"; // Définition de son identifiant
-    desElt.Class = "teddiesDes";
-    nameElt.textContent = myJson[number].name + " " + myJson[number].price + "€"; // Chercher l'info voulu
-    desElt.textContent = myJson[number].description;
-    document.getElementById("teddiesNamePrice").appendChild(nameElt); // Insertion du nouvel élément
-    document.getElementById("teddiesNamePrice").appendChild(desElt);
+.then(function(linkNumber)
+  {  
+    const section = document.getElementById('all-products');
+    const pdtContainer = document.createElement('article');
+    section.appendChild(pdtContainer);
+
+    const link = document.createElement("a");
+    const linkUrl = 'teddy_' + [number] + '.html';
+    link.setAttribute('href', linkUrl);
+    link.textContent = "Voir l'article";
+    pdtContainer.appendChild(link);   
   })
 }
-
-for (let i = 0; i < 5; i++) { // Boucle pour afficher toutes les photo du tableau
-  teddiesName(i);
+for (let i = 0 ; i < 5; i++){
+  teddyNumber(i);
 }
