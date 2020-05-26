@@ -1,50 +1,40 @@
-function teddy_1(){
-  fetch("http://localhost:3000/api/teddies/5be9c8541c9d440000665243")
-  .then(function(response){
-    return response.json();
-  })
+let url = new URL(document.URL);
+let search_param = url.searchParams;
+let id = search_param.get('id');
 
-  .then(function (teddy)
-  {
-      //creation container article
-      const section = document.getElementById('product');
-      const pdtContainer = document.createElement('article');
-      section.appendChild(pdtContainer);
+function teddyDisplay(){
+    fetch("http://localhost:3000/api/teddies/" + id)
+    .then(function(response){
+        return response.json();
+    })
 
-      //affichage name
-      const teddyName = document.createElement('h3');
-      teddyName.textContent = teddy.name;
-      pdtContainer.appendChild(teddyName);
+    .then(function(product)
+    {
+        //creation container article
+        const section = document.getElementById('product');
+        const pdtContainer = document.createElement('article');
+        section.appendChild(pdtContainer);
 
-      //affichage img
-      const teddyImg = document.createElement('img');
-      teddyImg.src = teddy.imageUrl;
-      pdtContainer.appendChild(teddyImg);
+        //creation img
+        const img = document.createElement('img');
+        img.src = product.imageUrl;
+        pdtContainer.appendChild(img);
 
-      //affichage description
-      const teddyDesc = document.createElement('p');
-      teddyDesc.textContent = teddy.description;
-      pdtContainer.appendChild(teddyDesc);
+        //affichage name
+        const name = document.createElement('h3');
+        name.textContent = product.name;
+        pdtContainer.appendChild(name);
 
-      //affichage prix
-      const teddyPrice = document.createElement('h4');
-      teddyPrice.textContent = teddy.price/100 + " €";
-      pdtContainer.appendChild(teddyPrice);
+        //affichage description
+        const desc = document.createElement('p');
+        desc.textContent = product.description;
+        pdtContainer.appendChild(desc);
 
-      //affichage couleur via select
-    
-      const myDiv = document.getElementById("myDiv");
-      const selectList = document.createElement("select");
-      selectList.setAttribute("id", "mySelect");
-      myDiv.appendChild(selectList);
+        //affichage price
+        const price = document.createElement('p');
+        price.textContent = product.price/100 +" €";
+        pdtContainer.appendChild(price);
 
-      for (let i= 0; i < teddy.colors.length; i++){
-        let option = document.createElement("option");
-        option.setAttribute("value", teddy.colors[i]);
-        option.textContent = teddy.colors[i];
-        selectList.appendChild(option);
-      }
-  }
-  )
+    })
 }
-teddy_1();
+teddyDisplay();

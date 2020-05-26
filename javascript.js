@@ -27,31 +27,24 @@ function teddiesArticle(){
       const price = document.createElement('p');
       price.textContent = teddy.price/100 +" €";
       pdtContainer.appendChild(price);
+
+
+      //affichage bouton
+      const btn = document.createElement("button");
+      btn.setAttribute('class', 'btn');
+      btn.setAttribute('data-id', teddy._id);
+      btn.textContent = "Voir l'article";
+      pdtContainer.appendChild(btn);
     }
-  })
+    //recuperations des boutons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        let id = btn.getAttribute('data-id');
+        let page = window.open("product.html?id=" + id);
+      })
+    })
+  }) 
 }
-
 teddiesArticle();
-
-function teddyNumber(number){
-  fetch("http://localhost:3000/api/teddies")
-  .then(function(response){ 
-  return response.json();
-  })
-
-.then(function(linkNumber)
-  {  
-    const section = document.getElementById('all-products');
-    const pdtContainer = document.createElement('article');
-    section.appendChild(pdtContainer);
-
-    const link = document.createElement("a");
-    const linkUrl = 'teddy_' + [number] + '.html';
-    link.setAttribute('href', linkUrl);
-    link.textContent = "Voir l'article";
-    pdtContainer.appendChild(link);   
-  })
-}
-for (let i = 0 ; i < 5; i++){
-  teddyNumber(i);
-}
