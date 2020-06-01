@@ -1,3 +1,4 @@
+//recuperation de l'id de l'url
 let url = new URL(document.URL);
 let search_param = url.searchParams;
 let id = search_param.get('id');
@@ -35,6 +36,54 @@ function teddyDisplay(){
         price.textContent = product.price/100 +" €";
         pdtContainer.appendChild(price);
 
+        //Selection de la couleur
+        const selection = document.createElement('select');
+        selection.id = "mySelect";
+        pdtContainer.appendChild(selection);
+        for (let i=0; i < product.colors.length; i++){
+            let option = document.createElement("option")
+            option.setAttribute("value", product.colors[i]);
+            option.text =product.colors[i];
+            selection.appendChild(option)
+        }
+
+
+        //affichage bouton "ajouter au panier"
+        const btn = document.createElement("button");
+        btn.setAttribute('class', 'btn');
+        btn.setAttribute('data-id', id);
+        btn.setAttribute('data-name', product.name);
+        btn.setAttribute('data-price', product.price/100);
+        btn.setAttribute('data-url', url);
+        btn.textContent = "Ajouter au panier";
+        pdtContainer.appendChild(btn);
+
+        //au clic du bouton "ajouter au panier"
+        btn.addEventListener('click', e =>{
+            e.preventDefault();
+            if (localStorage.getItem('panier')){
+
+                //Il y a quelque chose dans le panier
+                const newBasket = Array.of(JSON.parse(localStorage.getItem('panier')));
+                localStorage.clear();
+                const object = {
+                    name : product.name,
+                    price : product.price/100,
+                }
+                console.log(newBasket);
+                newBasket.push(object);
+                localStorage.setItem('panier', JSON.stringify(newBasket));
+            }
+
+                //IL n'y a rien dans le panier
+            else {
+                const object = {
+                    name : product.name,
+                    price : product.price/100,
+                }
+                localStorage.setItem('panier',JSON.stringify(object));
+            }
+        })
     })
 }
 teddyDisplay();
