@@ -46,7 +46,7 @@ function teddyDisplay(){
             option.text =product.colors[i];
             selection.appendChild(option)
         }
-
+        
 
         //affichage bouton "ajouter au panier"
         const btn = document.createElement("button");
@@ -70,7 +70,6 @@ function teddyDisplay(){
                     name : product.name,
                     price : product.price/100,
                 }
-                console.log(newBasket);
                 newBasket.push(object);
                 localStorage.setItem('panier', JSON.stringify(newBasket));
             }
@@ -80,9 +79,11 @@ function teddyDisplay(){
                 const object = {
                     name : product.name,
                     price : product.price/100,
+
                 }
                 localStorage.setItem('panier',JSON.stringify(object));
             }
+            //localStorage.clear();
         })
     })
 }
