@@ -45,23 +45,16 @@ pdtContainer.appendChild(totalBasket);
 //FORMULAIRE
 
 //validation formulaire via bouton valider
-function validateEmail(email) {
-    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(email);
-    }
-    
-    function Verification() {
-    // Récupérer lavaleur des champs nom et email
-    var Nom = document.getElementById('idNom').value;
-    var Email = document.getElementById('idEmail').value;
+function Verification() {
+    let Nom = document.getElementById('idNom').value;
+    let Email = document.getElementById('idEmail').value;
+    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     
     // Contrôle sur le nom
     if(Nom==''){
     alert('Vous devez compléter votre nom !');
     document.getElementById('idNom').style.backgroundColor="red";
     document.getElementById('idNom').style.color="#FFF";
-    
-    // Permet de bloquer l'envoi du formulaire
     return false;
     }
     else{
@@ -70,13 +63,20 @@ function validateEmail(email) {
     
     // Contrôle sur l'email
     if(Email=='') {
-    alert('Vous devez compléter votre adresse email');
-    document.getElementById('idEmail').style.backgroundColor="red";
-    document.getElementById('idEmail').style.color="#FFF";
-    return false;
+        alert('Vous devez compléter votre adresse email');
+        document.getElementById('idEmail').style.backgroundColor="red";
+        document.getElementById('idEmail').style.color="#FFF";
+        return false;
     }
-    
+
+    else if (Email != mailFormat)
+    {
+        alert('Adresse mail incorrect');
+        document.getElementById('idEmail').style.backgroundColor="red";
+        document.getElementById('idEmail').style.color="#FFF";
+        return false;
+    }
     else{
-    document.getElementById('idEmail').style.backgroundColor="#9C6";
+        document.getElementById('idEmail').style.backgroundColor="#9C6";
     }
 }
