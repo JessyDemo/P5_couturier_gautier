@@ -50,6 +50,7 @@ function teddyDisplay(){
 
         //affichage bouton "ajouter au panier"
         const btn = document.createElement("button");
+        //INUTILES ne garder que url -> Ces données sont à ajouter dans ton object l 70
         btn.setAttribute('class', 'btn');
         btn.setAttribute('data-id', id);
         btn.setAttribute('data-name', product.name);
@@ -64,6 +65,7 @@ function teddyDisplay(){
             if (localStorage.getItem('panier')){
 
                 //Il y a quelque chose dans le panier
+                //Attention vérifier longueur du storage ...
                 const newBasket = Array.of(JSON.parse(localStorage.getItem('panier')));
                 localStorage.clear();
                 const object = {
