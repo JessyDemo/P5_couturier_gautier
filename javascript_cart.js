@@ -24,6 +24,12 @@ for ( i=0; i <basket.length; i++)
     deleteBtn.addEventListener('click', e =>{
         e.preventDefault();
         
+        //Etape 1 : supprimer du localStorage
+            //supprimer de basket[]
+            //Réenregistrer localStorage avec basket[]
+        //Etape 2 : supprimer <article> du front 
+        //Etape3 : Recalculer le total panier
+        
     })
 }
 //calcul total
@@ -79,4 +85,7 @@ function Verification() {
     else{
         document.getElementById('idEmail').style.backgroundColor="#9C6";
     }
+//REPRENDRE LA VERIFICATION DES CHAMPS    
+    // 1- Création nouvel objet regex new RegExp
+    //2 - Tester la valeur de l'input regex.test(valeurAtester)=> RENVOIE BOOL
 }
