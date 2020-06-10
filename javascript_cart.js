@@ -1,22 +1,22 @@
 let basket = JSON.parse(window.localStorage.getItem('panier'));
 
-for ( i=0; i <basket.length; i++)
-{
-    //creation container
+//Affichage des produits dans le panier
+basket.forEach(function(item, index){
     const section = document.getElementById('recap');
     const pdtContainer = document.createElement('article');
     section.appendChild(pdtContainer);
 
     // affichage nom   
     const itemName = document.createElement('h3');
-    itemName.textContent = basket[i].name;
+    itemName.textContent = basket[index].name;
     pdtContainer.appendChild(itemName); 
 
     //affichage prix
     const itemPrice = document.createElement('p');
-    itemPrice.textContent = basket[i].price + " €";
+    itemPrice.textContent = basket[index].price + " €";
     pdtContainer.appendChild(itemPrice);
 
+    //bouton supprimer
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Supprimer";
     pdtContainer.appendChild(deleteBtn);
@@ -25,7 +25,8 @@ for ( i=0; i <basket.length; i++)
         e.preventDefault();
         
     })
-}
+});
+
 //calcul total
 let total = 0;
 for(let i in basket)
@@ -48,7 +49,9 @@ pdtContainer.appendChild(totalBasket);
 function Verification() {
     let Nom = document.getElementById('idNom').value;
     let Email = document.getElementById('idEmail').value;
-    let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let mailFormat = new RegExp("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$");
+    let testEmail =regEmail.test(email.value);
+    
     
     // Contrôle sur le nom
     if(Nom==''){

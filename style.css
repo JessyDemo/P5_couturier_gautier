@@ -9,9 +9,48 @@ h1, h3{
 
 p {
   font-family: 'Lato', sans-serif;
-  margin-bottom: 140px;
+  margin-bottom: 100px;
  }
 img {
   height: 300px;
+  border-bottom: solid cadetblue 1px;
  }
+#all-products
+{
+  display: flex ;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+article
+{
+  margin: auto;
+  box-shadow: 0 0 1em grey;
+  margin-bottom: 5%;
+  background-color: blanchedalmond;
+}
+button
+{
+  margin-bottom: 5%;
+}
+#teddy
+{
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  justify-content: center;
+  text-align: center;
+}
+select
+{
+  width: 30%;
+  margin: auto;
+  font-family: 'Merienda', cursive;
+  margin-bottom: 5%;
+}
+button
+{
+  font-family: 'Merienda', cursive;
+  background-color: coral;
+}
+
 

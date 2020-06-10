@@ -14,6 +14,7 @@ function teddyDisplay(){
         //creation container article
         const section = document.getElementById('product');
         const pdtContainer = document.createElement('article');
+        pdtContainer.id = "teddy";
         section.appendChild(pdtContainer);
 
         //creation img
@@ -51,9 +52,6 @@ function teddyDisplay(){
         //affichage bouton "ajouter au panier"
         const btn = document.createElement("button");
         btn.setAttribute('class', 'btn');
-        btn.setAttribute('data-id', id);
-        btn.setAttribute('data-name', product.name);
-        btn.setAttribute('data-price', product.price/100);
         btn.setAttribute('data-url', url);
         btn.textContent = "Ajouter au panier";
         pdtContainer.appendChild(btn);
@@ -62,26 +60,28 @@ function teddyDisplay(){
         btn.addEventListener('click', e =>{
             e.preventDefault();
             if (localStorage.getItem('panier')){
-
-                //Il y a quelque chose dans le panier
-                const newBasket = Array.of(JSON.parse(localStorage.getItem('panier')));
-                localStorage.clear();
+                let test = (localStorage.getItem('panier'));
+                test = JSON.parse(test);
                 const object = {
                     name : product.name,
                     price : product.price/100,
+                    idTeddy : id,
                 }
-                newBasket.push(object);
-                localStorage.setItem('panier', JSON.stringify(newBasket));
+                test.push(object);
+                localStorage.setItem('panier', JSON.stringify(test));
             }
+            
 
                 //IL n'y a rien dans le panier
             else {
+                let panier = new Array();
                 const object = {
                     name : product.name,
                     price : product.price/100,
-
+                    idTeddy : id,
                 }
-                localStorage.setItem('panier',JSON.stringify(object));
+                panier.push(object);
+                localStorage.setItem('panier',JSON.stringify(panier));
             }
             //localStorage.clear();
         })
