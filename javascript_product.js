@@ -66,6 +66,7 @@ function teddyDisplay(){
                     name : product.name,
                     price : product.price/100,
                     idTeddy : id,
+                    couleur : product.colors[0],
                 }
                 test.push(object);
                 localStorage.setItem('panier', JSON.stringify(test));
@@ -79,6 +80,7 @@ function teddyDisplay(){
                     name : product.name,
                     price : product.price/100,
                     idTeddy : id,
+                    couleur : product.colors[0],
                 }
                 panier.push(object);
                 localStorage.setItem('panier',JSON.stringify(panier));

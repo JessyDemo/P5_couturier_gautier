@@ -4,12 +4,18 @@ let basket = JSON.parse(window.localStorage.getItem('panier'));
 basket.forEach(function(item, index){
     const section = document.getElementById('recap');
     const pdtContainer = document.createElement('article');
+    pdtContainer.id = "itemCase";
     section.appendChild(pdtContainer);
 
     // affichage nom   
     const itemName = document.createElement('h3');
     itemName.textContent = basket[index].name;
     pdtContainer.appendChild(itemName); 
+
+    //affichage couleur
+    const itemColor = document.createElement('p');
+    itemColor.textContent = basket[index].couleur;
+    pdtContainer.appendChild(itemColor);
 
     //affichage prix
     const itemPrice = document.createElement('p');
@@ -23,7 +29,13 @@ basket.forEach(function(item, index){
 
     deleteBtn.addEventListener('click', e =>{
         e.preventDefault();
-        
+        //suppression affichage du produit
+        document.getElementById("itemCase").remove();
+        //suppression dans le localstorage
+        const item = JSON.parse(localStorage.getItem('panier'));
+        item.splice([index],1);
+        localStorage.setItem('panier', JSON.stringify(item));
+        window.location.reload();       
     })
 });
 
