@@ -57,36 +57,88 @@ pdtContainer.appendChild(totalBasket);
 //FORMULAIRE
 //FORMULAIRE
 
-//validation formulaire via bouton valider
 function Verification() {
-    let Nom = document.getElementById('idNom').value;
-    let Email = document.getElementById('idEmail').value;
-    let mailFormat = new RegExp("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$");
-    let testEmail =regEmail.test(email.value);
-    
-    
+
     // Contrôle sur le nom
-    if(Nom==''){
-    alert('Vous devez compléter votre nom !');
-    document.getElementById('idNom').style.backgroundColor="red";
-    document.getElementById('idNom').style.color="#FFF";
-    return false;
-    }
-    else{
-    document.getElementById('idNom').style.backgroundColor="#9C6";
-    }
-    
-    // Contrôle sur l'email
-    if(Email=='') {
-        alert('Vous devez compléter votre adresse email');
-        document.getElementById('idEmail').style.backgroundColor="red";
-        document.getElementById('idEmail').style.color="#FFF";
+    let Nom = document.getElementById('idNom').value;
+    let nameFormat = new RegExp(/^[a-zA-Z ,.'-]+$/);
+    let testNameFormat = nameFormat.test(Nom);
+    if(testNameFormat === false){
+        alert('Vous devez compléter votre nom !');
+        document.getElementById('idNom').style.backgroundColor="red";
+        document.getElementById('idNom').style.color="#FFF";
         return false;
     }
-
-    else if (Email != mailFormat)
+    else
     {
-        alert('Adresse mail incorrect');
+        document.getElementById('idNom').style.backgroundColor="#9C6";
+    }
+
+    // Contrôle sur le prenom
+    let Prenom = document.getElementById('idPrenom').value;
+    let testPrenomFormat = nameFormat.test(Prenom);
+    if(testPrenomFormat === false){
+        alert('Vous devez compléter votre Prenom !');
+        document.getElementById('idPrenom').style.backgroundColor="red";
+        document.getElementById('idPrenom').style.color="#FFF";
+        return false;
+    }
+    else
+    {
+        document.getElementById('idPrenom').style.backgroundColor="#9C6";
+    }
+
+    //Contrôle sur l'adresse
+    let Adresse = document.getElementById('idAdresse').value;
+    let adresseFormat = new RegExp(/^[a-zA-Z0-9 ,.'-]+$/);
+    let testAdresseFormat = adresseFormat.test(Adresse);
+    if(testAdresseFormat === false){
+        alert('Vous devez compléter votre adresse !');
+        document.getElementById('idAdresse').style.backgroundColor="red";
+        document.getElementById('idAdresse').style.color="#FFF";
+        return false;
+    }
+    else
+    {
+        document.getElementById('idAdresse').style.backgroundColor="#9C6";
+    }
+    
+    //Contrôle sur le code postal
+    let Codepostal = document.getElementById('idCodepostal').value;
+    let codePostalFormat = new RegExp(/^[0-9]{5,5}$/);
+    let testCodeFormat = codePostalFormat.test(Codepostal);
+    if(testCodeFormat === false){
+        alert('Vous devez compléter votre code postal!');
+        document.getElementById('idCodepostal').style.backgroundColor="red";
+        document.getElementById('idCodepostal').style.color="#FFF";
+        return false;
+    }
+    else
+    {
+        document.getElementById('idCodepostal').style.backgroundColor="#9C6";
+    }
+
+    //Contrôle sur la ville
+    let Ville = document.getElementById('idVille').value;
+    let testVilleFormat = nameFormat.test(Ville);
+    if(testVilleFormat === false){
+        alert('Vous devez compléter votre Ville!');
+        document.getElementById('idVille').style.backgroundColor="red";
+        document.getElementById('idVille').style.color="#FFF";
+        return false;
+    }
+    else
+    {
+        document.getElementById('idVille').style.backgroundColor="#9C6";
+    }
+
+    // Contrôle sur l'email
+    let Email = document.getElementById('idEmail').value;
+    let mailFormat = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    let testFormat = mailFormat.test(Email);
+
+    if(testFormat === false) {
+        alert('Vous devez compléter votre adresse email correctement');
         document.getElementById('idEmail').style.backgroundColor="red";
         document.getElementById('idEmail').style.color="#FFF";
         return false;
@@ -94,4 +146,33 @@ function Verification() {
     else{
         document.getElementById('idEmail').style.backgroundColor="#9C6";
     }
+
+
+    //RECUPERATION DONNEES FORMULAIRE
+    let infos = {
+        lastName : document.getElementById('idNom').value,
+        firstName : document.getElementById('idPrenom').value,
+        address : document.getElementById('idAdresse').value,
+        codeP : document.getElementById('idCodepostal').value,
+        town : document.getElementById('idVille').value,
+        mail : document.getElementById('idEmail').value
+    };
+    let infosJson = JSON.stringify(infos);
+    localStorage.setItem('informations', infosJson);
+
+    //RECUPERER TOTAL COMMANDE
+    let totalJson = JSON.stringify(total);
+    localStorage.setItem('total', totalJson);
+
+    //ENVOYER COMMANDE AU SERVEUR
+    // let request = XMLHttpRequest();
+    // request.open("POST", "http://localhost:3000/api/teddies");
+    // request.setRequestHeader("text", "application/json");
+    // request.send(JSON.stringify(products))
+    //let sendServer = JSON.stringify(products);
+
+    //OUVRIR PAGE CONFIRMATION SI FORMULAIRE OK
+    let openPage = window.open("confirmation.html");
 }
+
+
