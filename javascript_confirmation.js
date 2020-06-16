@@ -29,6 +29,5 @@ function confirmation (info, index){
     addressConfirm.textContent = "Votre commande sera livré a l'adresse suivante : " + infos.address +" "+ infos.codeP+" "+ infos.town;
     pdtContainer.appendChild(addressConfirm);
 
-    //affichage du retour API (N°commande)
 }
 confirmation();

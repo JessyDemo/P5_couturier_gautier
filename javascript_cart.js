@@ -57,11 +57,15 @@ pdtContainer.appendChild(totalBasket);
 //FORMULAIRE
 //FORMULAIRE
 const contact = {
-    name: 'Dupont'
+    firstName: 'Dupont',
+    lastName : 'jean',
+    address : 'rue une',
+    city : 'lyon',
+    email : 'email@test.com',
   }
   const products = [
     'item1',
-    'item2'
+    'item2',
   ]
   const commande = {
     contact,
@@ -86,7 +90,6 @@ bouton.addEventListener('click',(event) => {
     .then(function(response){
         console.log(response)
     })
-
 })
 
 
