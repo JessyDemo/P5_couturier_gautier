@@ -13,9 +13,29 @@ basket.forEach(function(item, index){
     pdtContainer.appendChild(itemName); 
 
     //affichage couleur
-    const itemColor = document.createElement('p');
-    itemColor.textContent = basket[index].couleur;
-    pdtContainer.appendChild(itemColor);
+    function checkSpecification(){
+        const color = basket[index].couleur;
+        const lense = basket[index].lenses;
+        const furniture = basket[index].varnish;
+
+        if (color){
+            const itemColor = document.createElement('p');
+            itemColor.textContent = basket[index].couleur;
+            pdtContainer.appendChild(itemColor);
+        }
+        else if (lense){
+            const itemLenses = document.createElement('p');
+            itemLenses.textContent = basket[index].lenses;
+            pdtContainer.appendChild(itemLenses);
+        }
+        else if (furniture){
+            const itemVarnish = document.createElement('p');
+            itemVarnish.textContent = basket[index].varnish;
+            pdtContainer.appendChild(itemVarnish);
+        }
+    }
+    checkSpecification();
+    
 
     //affichage prix
     const itemPrice = document.createElement('p');
@@ -52,6 +72,18 @@ section.appendChild(pdtContainer);
 const totalBasket = document.createElement('h3');
 totalBasket.textContent = "Votre total : " + total + " €";
 pdtContainer.appendChild(totalBasket);
+
+//Bouton supprimer le panier
+const deleteAll = document.createElement("button");
+deleteAll.textContent = "Vider le panier";
+pdtContainer.appendChild(deleteAll);
+
+deleteAll.addEventListener('click', e =>{
+    e.preventDefault();
+    //suppression affichage du produit
+    localStorage.clear();
+    window.location.reload();       
+})
 
 
 //FORMULAIRE

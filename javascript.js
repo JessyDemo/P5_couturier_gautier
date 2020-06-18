@@ -14,6 +14,7 @@ for (let i in articles){
       //creation container article
       const section = document.getElementById('all-'+ articles[i]);
       const pdtContainer = document.createElement('article');
+      pdtContainer.id = "item";
       section.appendChild(pdtContainer);
 
       //affichage img
@@ -44,7 +45,7 @@ for (let i in articles){
       btn.addEventListener('click', (event) => {
       event.preventDefault();
       let id = btn.getAttribute('data-id');
-      let page = window.open("product.html?id=" + id)
+      let page = window.open("product.html?item=" + articles[i]+ "&id="+ id)
       })
     })
   })

@@ -2,9 +2,10 @@
 let url = new URL(document.URL);
 let search_param = url.searchParams;
 let id = search_param.get('id');
+let article = search_param.get('item')
 
-function teddyDisplay(){
-    fetch("http://localhost:3000/api/teddies/" + id)
+function Display(){
+    fetch("http://localhost:3000/api/"+ article +"/" + id)
     .then(function(response){
         return response.json();
     })
@@ -14,7 +15,7 @@ function teddyDisplay(){
         //creation container article
         const section = document.getElementById('product');
         const pdtContainer = document.createElement('article');
-        pdtContainer.id = "teddy";
+        pdtContainer.id = "item";
         section.appendChild(pdtContainer);
 
         //creation img
@@ -37,17 +38,47 @@ function teddyDisplay(){
         price.textContent = product.price/100 +" €";
         pdtContainer.appendChild(price);
 
-        //Selection de la couleur
+        //Selection de l'option
         const selection = document.createElement('select');
         selection.id = "mySelect";
         pdtContainer.appendChild(selection);
-        for (let i=0; i < product.colors.length; i++){
-            let option = document.createElement("option")
-            option.setAttribute("value", product.colors[i]);
-            option.text =product.colors[i];
-            selection.appendChild(option)
+
+        function checkitem(){
+
+            const ours = product.colors;
+            const cameras = product.lenses;
+            const meubles = product.varnish;
+
+            if (ours){
+                for (let i=0; i < product.colors.length; i++){
+                    let option = document.createElement("option")
+                    option.setAttribute("value", product.colors[i]);
+                    option.text =product.colors[i];
+                    selection.appendChild(option)
+                } 
+            }   
+            else if (cameras){
+                for (let i=0; i < product.lenses.length; i++){
+                    let option = document.createElement("option")
+                    option.setAttribute("value", product.lenses[i]);
+                    option.text =product.lenses[i];
+                    selection.appendChild(option)
+                }
+            }    
+            else if (meubles){
+                for (let i=0; i < product.varnish.length; i++){
+                    let option = document.createElement("option")
+                    option.setAttribute("value", product.varnish[i]);
+                    option.text =product.varnish[i];
+                    selection.appendChild(option)
+                }
+            }
+
+            
+
         }
-        
+        checkitem();
+
 
         //affichage bouton "ajouter au panier"
         const btn = document.createElement("button");
@@ -55,38 +86,87 @@ function teddyDisplay(){
         btn.setAttribute('data-url', url);
         btn.textContent = "Ajouter au panier";
         pdtContainer.appendChild(btn);
+        
+         //au clic du bouton "ajouter au panier"
+         const ours = product.colors;
+         const cameras = product.lenses;
+         const meubles = product.varnish;
 
-        //au clic du bouton "ajouter au panier"
-        btn.addEventListener('click', e =>{
+         btn.addEventListener('click', e =>{
             e.preventDefault();
             if (localStorage.getItem('panier')){
                 let test = (localStorage.getItem('panier'));
                 test = JSON.parse(test);
-                const object = {
-                    name : product.name,
-                    price : product.price/100,
-                    idTeddy : id,
-                    couleur : product.colors[0],
+                if (ours){
+                    let object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idTeddy : id,
+                        couleur : product.colors[0],
+                    }
+                    test.push(object);
+                    localStorage.setItem('panier', JSON.stringify(test));
                 }
-                test.push(object);
-                localStorage.setItem('panier', JSON.stringify(test));
+                else if (cameras){
+                    let object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idCam : id,
+                        lenses : product.lenses[0],
+                    }
+                    test.push(object);
+                    localStorage.setItem('panier', JSON.stringify(test));
+                }
+                else if (meubles){
+                    let object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idFurniture : id,
+                        varnish : product.varnish[0],
+                    }
+                    test.push(object);
+                    localStorage.setItem('panier', JSON.stringify(test));
+                }
             }
             
 
                 //IL n'y a rien dans le panier
-            else {
-                let panier = new Array();
-                const object = {
-                    name : product.name,
-                    price : product.price/100,
-                    idTeddy : id,
-                    couleur : product.colors[0],
+            else{
+                if(ours){
+                    let panier = new Array();
+                    const object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idTeddy : id,
+                        couleur : product.colors[0],
+                    }
+                    panier.push(object);
+                    localStorage.setItem('panier',JSON.stringify(panier));
                 }
-                panier.push(object);
-                localStorage.setItem('panier',JSON.stringify(panier));
+                if(cameras){
+                    let panier = new Array();
+                    const object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idCam : id,
+                        lenses : product.lenses[0],
+                    }
+                    panier.push(object);
+                    localStorage.setItem('panier',JSON.stringify(panier));
+                }
+                if(meubles){
+                    let panier = new Array();
+                    const object = {
+                        name : product.name,
+                        price : product.price/100,
+                        idCam : id,
+                        varnish : product.varnish[0],
+                    }
+                    panier.push(object);
+                    localStorage.setItem('panier',JSON.stringify(panier));
+                }
             }
-            //localStorage.clear();
         })
     })
 }
-teddyDisplay();
+Display();
