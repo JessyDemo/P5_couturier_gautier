@@ -13,6 +13,10 @@ basket.forEach(function(item, index){
     pdtContainer.appendChild(itemName); 
 
     //affichage couleur
+    /*
+* ==== A REFACTORISER
+*/
+
     function checkSpecification(){
         const color = basket[index].couleur;
         const lense = basket[index].lenses;
@@ -55,23 +59,11 @@ basket.forEach(function(item, index){
         const item = JSON.parse(localStorage.getItem('panier'));
         item.splice([index],1);
         localStorage.setItem('panier', JSON.stringify(item));
-        window.location.reload();       
+        getTotalBasket();      
     })
 });
 
-//calcul total
-let total = 0;
-for(let i in basket)
-{
-    total += basket[i].price;
-}
-//affichage total
-const section = document.getElementById('recap');
-const pdtContainer = document.createElement('article');
-section.appendChild(pdtContainer);
-const totalBasket = document.createElement('h3');
-totalBasket.textContent = "Votre total : " + total + " €";
-pdtContainer.appendChild(totalBasket);
+getTotalBasket();
 
 //Bouton supprimer le panier
 const deleteAll = document.createElement("button");
@@ -88,6 +80,9 @@ deleteAll.addEventListener('click', e =>{
 
 //FORMULAIRE
 //FORMULAIRE
+/*
+* ==== A REFACTORISER
+*/
 
 function Verification() {
 
@@ -186,6 +181,22 @@ function Verification() {
     //OUVRIR PAGE CONFIRMATION SI FORMULAIRE OK
     // let openPage = window.open("confirmation.html");
     
+}
+
+function getTotalBasket(){
+    //calcul total
+    let total = 0;
+    for(let i in basket)
+    {
+        total += basket[i].price;
+    }
+    //affichage total
+    const section = document.getElementById('recap');
+    const pdtContainer = document.createElement('article');
+    section.appendChild(pdtContainer);
+    const totalBasket = document.createElement('h3');
+    totalBasket.textContent = "Votre total : " + total + " €";
+    pdtContainer.appendChild(totalBasket);
 }
 
 
