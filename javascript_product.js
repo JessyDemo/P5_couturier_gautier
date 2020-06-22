@@ -101,7 +101,7 @@ function Display(){
                     let object = {
                         name : product.name,
                         price : product.price/100,
-                        idTeddy : id,
+                        id : id,
                         couleur : product.colors[0],
                     }
                     test.push(object);
@@ -111,7 +111,7 @@ function Display(){
                     let object = {
                         name : product.name,
                         price : product.price/100,
-                        idCam : id,
+                        id : id,
                         lenses : product.lenses[0],
                     }
                     test.push(object);
@@ -121,7 +121,7 @@ function Display(){
                     let object = {
                         name : product.name,
                         price : product.price/100,
-                        idFurniture : id,
+                        id : id,
                         varnish : product.varnish[0],
                     }
                     test.push(object);
@@ -137,7 +137,7 @@ function Display(){
                     const object = {
                         name : product.name,
                         price : product.price/100,
-                        idTeddy : id,
+                        id : id,
                         couleur : product.colors[0],
                     }
                     panier.push(object);
@@ -148,7 +148,7 @@ function Display(){
                     const object = {
                         name : product.name,
                         price : product.price/100,
-                        idCam : id,
+                        id : id,
                         lenses : product.lenses[0],
                     }
                     panier.push(object);
@@ -159,7 +159,7 @@ function Display(){
                     const object = {
                         name : product.name,
                         price : product.price/100,
-                        idCam : id,
+                        id : id,
                         varnish : product.varnish[0],
                     }
                     panier.push(object);

@@ -1,4 +1,4 @@
-let infos = JSON.parse(window.localStorage.getItem('informations'));
+let infos = JSON.parse(window.localStorage.getItem('contact'));
 let total = JSON.parse(window.localStorage.getItem('total'));
 let cart = JSON.parse(window.localStorage.getItem('panier'));
 
@@ -22,11 +22,11 @@ function confirmation (info, index){
     pdtContainer.appendChild(thanks);
 
     const mailConfirm = document.createElement('p');
-    mailConfirm.textContent = "Vous recevrez la confirmation de commande sur votre adresse mail : " + infos.mail;
+    mailConfirm.textContent = "Vous recevrez la confirmation de commande sur votre adresse mail : " + infos.email;
     pdtContainer.appendChild(mailConfirm);
 
     const addressConfirm = document.createElement('p');
-    addressConfirm.textContent = "Votre commande sera livré a l'adresse suivante : " + infos.address +" "+ infos.codeP+" "+ infos.town;
+    addressConfirm.textContent = "Votre commande sera livré a l'adresse suivante : " + infos.address +" "+ infos.city;
     pdtContainer.appendChild(addressConfirm);
 
 }

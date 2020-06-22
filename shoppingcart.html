@@ -22,7 +22,7 @@
 
             </section>
             <section id="form">
-                <form method="post" >
+                <form method="post" onsubmit="return Verification()">
                     <label for="idNom">Nom <span class="text-danger">*</span></label>
                     <input type="text" name="nom" id="idNom">
                     <br><br>
@@ -33,10 +33,6 @@
 
                     <label for="idAdresse">Adresse <span class="text-danger">*</span></label>
                     <input type="text" name="adresse" id="idAdresse">
-                    <br><br>
-
-                    <label for="idCodepostal">Code postal <span class="text-danger">*</span></label>
-                    <input type="text" name="codepostal" id="idCodepostal">
                     <br><br>
 
                     <label for="idVille">Ville <span class="text-danger">*</span></label>
