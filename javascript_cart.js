@@ -218,9 +218,9 @@ bouton.addEventListener('click',(event) => {
         }
         fetch ("http://localhost:3000/api/teddies/order", options)
         .then(function(response){
-            response.json()
+            return response.json(); //IL TE MANQUAIT SEULEMENT LE MOT CLE return afin de retourner une valeur!!
         })
         .then(function(response){
-            console.log();
+            console.log(response);
         })
     })
